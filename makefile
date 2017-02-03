@@ -115,6 +115,24 @@ COSMFVA: alt/COSMFVA
 OUTPUT/%.f06 : inp/%.inp
 	./sbin/nastran.py -o OUTPUT $<
 ################################################################################
+OUTPUT/d02022a.f06: inp/d02022a.inp OUTPUT/d02021a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02021a.sof1 $<
+OUTPUT/d02023a.f06: inp/d02023a.inp OUTPUT/d02021a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02021a.sof1 $<
+OUTPUT/d02024a.f06: inp/d02024a.inp OUTPUT/d02021a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02021a.sof1 $<
+OUTPUT/d02025a.f06: inp/d02025a.inp OUTPUT/d02021a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02021a.sof1 $<
+OUTPUT/d02026a.f06: inp/d02026a.inp OUTPUT/d02021a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02021a.sof1 $<
+OUTPUT/d02027a.f06: inp/d02027a.inp OUTPUT/d02021a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02021a.sof1 $<
+OUTPUT/d02032a.f06: inp/d02032a.inp OUTPUT/d02031a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
+OUTPUT/d02033a.f06: inp/d02033a.inp OUTPUT/d02031a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
+OUTPUT/d02034a.f06: inp/d02034a.inp OUTPUT/d02031a.f06
+        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
 OUTPUT/d01011b.f06: inp/d01011b.inp OUTPUT/d01011a.f06
 	rm -f RSCARDS
 	ln -s OUTPUT/d01011a.dict RSCARDS
