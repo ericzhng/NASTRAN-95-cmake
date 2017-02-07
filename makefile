@@ -134,9 +134,9 @@ OUTPUT/d02033a.f06: inp/d02033a.inp OUTPUT/d02031a.f06
 OUTPUT/d02034a.f06: inp/d02034a.inp OUTPUT/d02031a.f06
 	./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
 OUTPUT/d02035a.f06: inp/d02035a.inp OUTPUT/d02031a.f06
-        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
+	./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
 OUTPUT/d02036a.f06: inp/d02036a.inp OUTPUT/d02031a.f06
-        ./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
+	./sbin/nastran.py -o OUTPUT --SOF1 OUTPUT/d02031a.sof1 $<
 OUTPUT/d01011b.f06: inp/d01011b.inp OUTPUT/d01011a.f06
 	rm -f RSCARDS
 	ln -s OUTPUT/d01011a.dict RSCARDS
