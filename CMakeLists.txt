@@ -7,7 +7,9 @@ set(CMAKE_Fortran_COMPILER gfortran CACHE STRING "Fortran compiler")
 
 # Set the Fortran compilation flags depending on the compiler
 if (CMAKE_Fortran_COMPILER_ID MATCHES "GNU")
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -w -fno-range-check -fno-automatic -std=legacy -fallow-invalid-boz")
+  # users can use -O1 or -g; currently other optimizations will not work
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -fno-range-check -fno-automatic -std=legacy -fallow-invalid-boz")
+  # set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fno-stack-arrays -Ofast -O3 -w -fno-range-check -fno-automatic -std=legacy -fallow-invalid-boz")
   # set(CMAKE_Fortran_FLAGS_DEBUG "-g")
   # set(CMAKE_Fortran_FLAGS_RELEASE "-Ofast -march=native")
 elseif (CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
@@ -35,10 +37,10 @@ endfunction()
 
 
 # Collect source files
+# efile(BD_SOURCES GLOB "src/bd/*.f" EXCLUDE "bd/semdbd.f")
 efile(BD_SOURCES GLOB "src/bd/*.f")
-efile(MDS_SOURCES GLOB "src/mds/*.f")
+efile(MDS_SOURCES GLOB "src/mds/*.f" EXCLUDE chkfil.f)
 efile(MIS_SOURCES GLOB "src/mis/*.f")
-
 
 foreach(SRC_FILE ${MIS_SOURCES})
   set_source_files_properties(${SRC_FILE} PROPERTIES Fortran_PREPROCESS OFF)
