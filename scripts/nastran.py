@@ -239,7 +239,7 @@ def set_parser(parser):
   parser.add_argument('-e', '--env',
                       metavar='ENV',
                       type=str,
-                      default='',
+                      default='win',
                       help='choose batch or sh file to run command')
 
   parser.add_argument('-n', '--no-run',
