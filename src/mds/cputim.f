@@ -77,13 +77,9 @@ C     THAN PREVIOUS CPUTIME CALL. OTHERWISE, CALLING ROUTINE MAY GET
 C     INTO TROUBLE, SUCH AS DIVIDED BY ZERO.        
 C        
       REAL ARRAY(2)        
-CDME  19 JAN 2016
-CDME  D. Everhart
-CDME  Changed to conform to GFORTRAN implementation of ETIME subroutine.
-      REAL TIME
-      CALL ETIME(ARRAY,TIME)
-CDME  CALL ETIME(ARRAY)
-CDME
+	  REAL RESULT
+      CALL ETIME(ARRAY,RESULT)
+
       T=ARRAY(2)
       IF (IFLAG .NE. 0) GO TO 30        
       ICPUSC = T + .49        
