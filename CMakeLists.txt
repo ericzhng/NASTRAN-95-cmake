@@ -7,11 +7,12 @@ set(CMAKE_Fortran_COMPILER gfortran CACHE STRING "Fortran compiler")
 
 # Set the Fortran compilation flags depending on the compiler
 if (CMAKE_Fortran_COMPILER_ID MATCHES "GNU")
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -O3 -w -fallow-invalid-boz -fallow-argument-mismatch -fdec")
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -w -fno-range-check -fno-automatic -std=legacy -fallow-invalid-boz")
+  # set(CMAKE_Fortran_FLAGS_DEBUG "-g")
+  # set(CMAKE_Fortran_FLAGS_RELEASE "-Ofast -march=native")
 elseif (CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} /Qipo /O3 /MP /integer-size=64 /Qdiag-disable:10448 /Qdiag-disable:warn")
 endif()
-
 
 function(efile out_var)
   set(options)
@@ -34,15 +35,14 @@ endfunction()
 
 
 # Collect source files
-efile(BD_SOURCES GLOB "src/bd/*.f" EXCLUDE "bd/semdbd.f")
+efile(BD_SOURCES GLOB "src/bd/*.f")
+efile(MDS_SOURCES GLOB "src/mds/*.f")
 efile(MIS_SOURCES GLOB "src/mis/*.f")
 
 
 foreach(SRC_FILE ${MIS_SOURCES})
   set_source_files_properties(${SRC_FILE} PROPERTIES Fortran_PREPROCESS OFF)
 endforeach()
-
-efile(MDS_SOURCES GLOB "src/mds/*.f")
 
 # Create object libraries
 add_library(nasmis_obj OBJECT ${MIS_SOURCES})
