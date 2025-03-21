@@ -6,9 +6,12 @@ C********************************************************************
       INCLUDE  'ZZZZZZ.COM'
       COMMON / SYSTEM / ISYSBF, IWR                                             
       INTEGER           SCRATCH(2)                                              
-
-      DATA              SCRATCH / 4HSCRA , 4HTCHX /                              
-
+CDME  19 JAN 2016
+CDME  D. Everhart
+CDME  GFORTRAN doesn't allow character assignment to INTEGER data.
+CDME  This should be fixed to remove the HOLLERITH, though!
+      DATA              SCRATCH / 4HSCRA,4HTCHX /                               
+CDME  DATA              SCRATCH / 'SCRA','TCHX' /                               
       IBLKSZ = ISYSBF - 4                                                       
       ITOTI  = 0                                                                
       ITOTX  = 0                                                                
