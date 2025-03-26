@@ -1,0 +1,154 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Fortran (gdb)",
+        "type": "cppdbg",
+        "request": "launch",
+        "environment": [
+          {
+            "name": "PATH",
+            "value": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
+          },
+          {
+            "name": "MSYSTEM",
+            "value": "UCRT64"
+          },
+          {
+            "name": "DBMEM",
+            "value": "12000000"
+          },
+          {
+            "name": "OCMEM",
+            "value": "2000000"
+          },
+          {
+            "name": "DBMEM",
+            "value": "12000000"
+          },
+          {
+            "name": "OCMEM",
+            "value": "2000000"
+          },
+          {
+            "name": "DIRCTY",
+            "value": "C:/Users/ZhangHui/AppData/Local/Temp/9958a6ea"
+          },
+          {
+            "name": "RFDIR",
+            "value": "${workspaceFolder}/tests/rf"
+          },
+          {
+            "name": "NPTPNM",
+            "value": "${workspaceFolder}/OUTPUT/test.nptp"
+          },
+          {
+            "name": "PLTNM",
+            "value": "${workspaceFolder}/OUTPUT/test.plt"
+          },
+          {
+            "name": "DICTNM",
+            "value": "${workspaceFolder}/OUTPUT/test.dict"
+          },
+          {
+            "name": "PUNCHNM",
+            "value": "${workspaceFolder}/OUTPUT/test.pch"
+          },
+          {
+            "name": "OPTPNM",
+            "value": "${workspaceFolder}/OUTPUT/test.opt"
+          },
+          {
+            "name": "LOGNM",
+            "value": "${workspaceFolder}/OUTPUT/test.f04"
+          },
+          {
+            "name": "IN12",
+            "value": "${workspaceFolder}/OUTPUT/test.in12"
+          },
+          {
+            "name": "OUT11",
+            "value": "${workspaceFolder}/OUTPUT/test.out11"
+          },
+          {
+            "name": "FTN11",
+            "value": "${workspaceFolder}/OUTPUT/test.f11"
+          },
+          {
+            "name": "FTN12",
+            "value": "${workspaceFolder}/OUTPUT/test.f12"
+          },
+          {
+            "name": "FTN13",
+            "value": "${workspaceFolder}/OUTPUT/test.f13"
+          },
+          {
+            "name": "FTN14",
+            "value": "${workspaceFolder}/OUTPUT/test.f14"
+          },
+          {
+            "name": "FTN15",
+            "value": "${workspaceFolder}/OUTPUT/test.f15"
+          },
+          {
+            "name": "FTN16",
+            "value": "${workspaceFolder}/OUTPUT/test.f16"
+          },
+          {
+            "name": "FTN17",
+            "value": "${workspaceFolder}/OUTPUT/test.f17"
+          },
+          {
+            "name": "FTN18",
+            "value": "${workspaceFolder}/OUTPUT/test.f18"
+          },
+          {
+            "name": "FTN19",
+            "value": "${workspaceFolder}/OUTPUT/test.f19"
+          },
+          {
+            "name": "FTN20",
+            "value": "${workspaceFolder}/OUTPUT/test.f20"
+          },
+          {
+            "name": "FTN21",
+            "value": "${workspaceFolder}/OUTPUT/test.f21"
+          },
+          {
+            "name": "FTN22",
+            "value": "${workspaceFolder}/OUTPUT/test.f22"
+          },
+          {
+            "name": "FTN23",
+            "value": "${workspaceFolder}/OUTPUT/test.f23"
+          },
+          {
+            "name": "SOF1",
+            "value": "${workspaceFolder}/OUTPUT/test.sof1"
+          },
+          {
+            "name": "SOF2",
+            "value": "${workspaceFolder}/OUTPUT/test.sof2"
+          }
+        ],
+        //"preLaunchTask": "prerun_tasks",
+        "program": "${workspaceFolder}/build/bin/nastran.exe",
+        "cwd":     "${workspaceFolder}",
+        "args": [
+                "<${workspaceFolder}/tests/inp/d01001a.inp",
+                ">${workspaceFolder}/d01001a.out"
+            ],
+        "stopAtEntry": true,
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "C:\\tools\\msys64\\ucrt64\\bin\\gdb.exe",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ]
+      }
+    ]
+}
