@@ -8,7 +8,7 @@ set(CMAKE_Fortran_COMPILER gfortran CACHE STRING "Fortran compiler")
 # Set the Fortran compilation flags depending on the compiler
 if (CMAKE_Fortran_COMPILER_ID MATCHES "GNU")
   # users can use -O1 or -g; currently other optimizations will not work
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -fno-range-check -fno-automatic -std=legacy -fallow-invalid-boz")
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -fno-range-check -fno-automatic -fallow-invalid-boz -fallow-argument-mismatch -fdec")
   # set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fno-stack-arrays -Ofast -O3 -w -fno-range-check -fno-automatic -std=legacy -fallow-invalid-boz")
   # set(CMAKE_Fortran_FLAGS_DEBUG "-g")
   # set(CMAKE_Fortran_FLAGS_RELEASE "-Ofast -march=native")
