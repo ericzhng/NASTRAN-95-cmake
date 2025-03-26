@@ -3,7 +3,7 @@ C
       CHARACTER*80    VALUE
       CHARACTER*5     TMP
       INTEGER         SPERLK
-      REAL            SYSTM(94)
+      REAL*4            SYSTM(94)
       COMMON / LSTADD / LASTAD
       COMMON / SYSTEM / ISYSTM(94),SPERLK
       COMMON / SOFDSN / SDSN(10)
@@ -51,7 +51,7 @@ C
       VALUE = ' '
       CALL GETENV ( 'DIRCTY', DIRTRY )
       LEN = INDEX( DIRTRY, ' ' ) - 1
-      DO 20 I = 1, 90
+      DO 20 I = 1, 89
       IF ( I .LE. 9 ) WRITE ( TMP, 901 ) I
       IF ( I .GT. 9 ) WRITE ( TMP, 902 ) I
 901   FORMAT('scr',I1)
