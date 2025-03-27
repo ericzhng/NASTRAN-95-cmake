@@ -1,5 +1,77 @@
 {
-    "python-envs.defaultEnvManager": "ms-python.python:system",
-    "python-envs.pythonProjects": [],
-    "git.ignoreLimitWarning": true
+    "workbench.colorTheme": "Visual Studio Light",
+    "remote.SSH.remotePlatform": {
+        "hpcnde025": "linux"
+    },
+    "python.defaultInterpreterPath": "c:\\tools\\Python313\\python.exe",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "MSYS2 CLANG64": {
+            "path": ["C:\\tools\\msys64\\usr\\bin\\bash.exe"],
+            "args": ["--login", "-i"],
+            "env": {
+                "MSYSTEM": "CLANG64",
+                "CHERE_INVOKING": "1",
+                "MSYS2_PATH_TYPE": "inherit"
+            },
+            "overrideName": true
+          },
+          "MYSYS2 MINGW64": {
+            "path": ["C:\\tools\\msys64\\usr\\bin\\bash.exe"],
+            "args": ["--login", "-i"],
+            "env": {
+                "MSYSTEM": "MINGW64",
+                "CHERE_INVOKING": "1",
+                "MSYS2_PATH_TYPE": "inherit"
+            },
+            "overrideName": true
+          },
+          "MYSYS2 UCRT64": {
+            "path": ["C:\\tools\\msys64\\usr\\bin\\bash.exe"],
+            "args": ["--login", "-i"],
+            "env": {
+                "MSYSTEM": "UCRT64",
+                "CHERE_INVOKING": "1",
+                "MSYS2_PATH_TYPE": "inherit"
+            },
+            "overrideName": true
+          }
+    },
+    "terminal.integrated.accessibleViewFocusOnCommandExecution": true,
+    "terminal.integrated.defaultProfile.windows": "MYSYS2 UCRT64",
+    "fortran.linter.includePaths": [
+        "/usr/include/**",
+        "${workspaceFolder}/**"
+    ],
+    "fortran.linter.extraArgs": [
+        "-fdefault-real-8",
+        "-fdefault-double-8",
+        "-Wunused-variable",
+        "-Wunused-dummy-argument"
+    ],
+    "fortran.linter.compilerPath": "gfortran",
+    "fortran.formatting.findentArgs": [
+        "-Cn",
+        "-Rr"
+    ],
+    "fortran.formatting.fprettifyArgs": [
+        "--whitespace-comma",
+        "--enable-decl"
+    ],
+    "debug.onTaskErrors": "showErrors",
+    "fortran.fortls.path": "/usr/bin/fortls"
 }
