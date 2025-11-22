@@ -3,8 +3,8 @@ APP      DISPLACEMENT
 SOL      1,1                                                                    
 TIME     5                                                                      
 DIAG     8
-ALTER    85 $
-OUTPUT2  KGG,KLL,,,//0/11 $  
+ALTER    140 $
+OUTPUT2  KGG,PG,KLL,PL,//0/11 $  
 ENDALTER $   
 CEND                                                                            
 $

@@ -55,8 +55,8 @@
      SOL      1,1                                                                    
      TIME     5                                                                      
      DIAG     8                                                                      
-     ALTER    85 $                                                                   
-     OUTPUT2  KGG,KLL,,,//0/11 $                                                     
+     ALTER    140 $                                                                  
+     OUTPUT2  KGG,PG,KLL,PL,//0/11 $                                                 
      ENDALTER $                                                                      
      CEND                                                                            
 1     CANTILEVER BEAM WITH MATRIX EXPORT (L=1.0m, 10 ELMTS)                 /    95 SUN SOLARIS NASTRAN    / NOV 22, ** / PAGE     5
@@ -129,15 +129,19 @@
 
 0*** USER INFORMATION MESSAGE 3113,
      EMG MODULE PROCESSING DOUBLE PRECISION BAR      ELEMENTS (ELEMENT TYPE  34) STARTING WITH ID        1
-0*** USER INFORMATION MESSAGE 4114, MATRIX DATA BLOCK KGG      WRITTEN ON FORTRAN UNIT  11
-     TRAILR =    66    66     6     2    12      693
-0*** USER INFORMATION MESSAGE 4114, MATRIX DATA BLOCK KLL      WRITTEN ON FORTRAN UNIT  11
-     TRAILR =    60    60     6     2    12      755
 0*** USER INFORMATION MESSAGE 3035
      FOR SUBCASE NUMBER     1, EPSILON SUB E =  -3.7707784E-13
 0*** SYSTEM WARNING MESSAGE 3022
 +                                 (SEE PROG. MANUAL SEC. 4.9.7, OR USERS' MANUAL P. 6.5-3)
      DATA BLOCK ONRGY1   MAY BE REQUIRED AS INPUT AND IS NOT OUTPUT BY A PREVIOUS MODULE IN THE CURRENT DMAP ROUTE.
+0*** USER INFORMATION MESSAGE 4114, MATRIX DATA BLOCK KGG      WRITTEN ON FORTRAN UNIT  11
+     TRAILR =    66    66     6     2    12      693
+0*** USER INFORMATION MESSAGE 4114, MATRIX DATA BLOCK PG       WRITTEN ON FORTRAN UNIT  11
+     TRAILR =     1    66     2     2     2      151
+0*** USER INFORMATION MESSAGE 4114, MATRIX DATA BLOCK KLL      WRITTEN ON FORTRAN UNIT  11
+     TRAILR =    60    60     6     2    12      755
+0*** USER INFORMATION MESSAGE 4114, MATRIX DATA BLOCK PL       WRITTEN ON FORTRAN UNIT  11
+     TRAILR =     1    60     2     2     2      166
 1     CANTILEVER BEAM WITH MATRIX EXPORT (L=1.0m, 10 ELMTS)                 /    95 SUN SOLARIS NASTRAN    / NOV 22, ** / PAGE     8
       NASTRAN DEMONSTRATION PROBLEM NO. D01-01-3A                                                                                   
 0     LOAD ON TRAILING EDGE                                                                                                         
@@ -175,6 +179,6 @@
 1
  JOB TITLE =  CANTILEVER BEAM WITH MATRIX EXPORT (L=1.0m, 10 ELMTS)              
  DATE: 11/22/**
- END TIME:  1:13:19
+ END TIME: 18:36:39
  TOTAL WALL CLOCK TIME      0 SEC.
  
