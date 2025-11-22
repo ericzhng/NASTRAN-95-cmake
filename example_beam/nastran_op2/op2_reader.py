@@ -12,6 +12,7 @@ INT4 = "<i"
 REAL8 = "<d"
 
 # Control block values used in the OP2 file format
+_NEW_MATRIX_FLAG = 2
 _MATRIX_HEADER_FLAG = -1
 _NEW_VARIABLE_NAME_FLAG = -2
 _DATA_BLOCK_FLAG = -3
@@ -141,13 +142,10 @@ class OP2Reader:
             log.warning("No data blocks found to parse.")
             return
 
-        num_blocks = len(self._blocks)
-        current_names = [self._blocks[1].strip().decode("utf-8")]
-        current_matrix_rows = []
-        current_matrix_info = {}
+        index = -1
         end_of_matrix_found = False
+        num_blocks = len(self._blocks)
 
-        index = 1
         while index < num_blocks - 1:
             index += 1
             try:
@@ -158,7 +156,13 @@ class OP2Reader:
                 )
                 break
 
-            if control_block_val == _MATRIX_HEADER_FLAG:
+            if control_block_val == _NEW_MATRIX_FLAG:
+                index += 1
+                current_names = [self._blocks[index].strip().decode("utf-8")]
+                current_matrix_rows = []
+                current_matrix_info = {}
+
+            elif control_block_val == _MATRIX_HEADER_FLAG:
                 index += 2
                 current_matrix_info = self._parse_matrix_header(index)
             elif control_block_val == _NEW_VARIABLE_NAME_FLAG:
@@ -182,9 +186,6 @@ class OP2Reader:
                     current_names, current_matrix_rows, current_matrix_info
                 )
                 # Reset for the next matrix
-                current_matrix_rows = []
-                current_matrix_info = {}
-                current_names = []
                 end_of_matrix_found = False
 
     def print_matrix_info(self) -> None:
