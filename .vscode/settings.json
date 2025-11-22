@@ -5,10 +5,6 @@
   },
   "python.defaultInterpreterPath": "c:\\tools\\Python313\\python.exe",
   "terminal.integrated.profiles.windows": {
-    "PowerShell": {
-      "source": "PowerShell",
-      "icon": "terminal-powershell"
-    },
     "Command Prompt": {
       "path": [
         "${env:windir}\\Sysnative\\cmd.exe",
@@ -16,6 +12,10 @@
       ],
       "args": [],
       "icon": "terminal-cmd"
+    },
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
     },
     "Git Bash": {
       "source": "Git Bash"
@@ -41,7 +41,7 @@
       "overrideName": true
     },
     "MYSYS2 UCRT64": {
-      "path": ["C:\\tools\\msys64\\usr\\bin\\bash.exe"],
+      "path": ["C:\\msys64\\usr\\bin\\bash.exe"],
       "args": ["--login", "-i"],
       "env": {
         "MSYSTEM": "UCRT64",
@@ -52,7 +52,7 @@
     }
   },
   "terminal.integrated.accessibleViewFocusOnCommandExecution": true,
-  "terminal.integrated.defaultProfile.windows": "MYSYS2 UCRT64",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
   "fortran.linter.includePaths": ["/usr/include/**", "${workspaceFolder}/**"],
   "fortran.linter.extraArgs": [
     "-fdefault-real-8",
