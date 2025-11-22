@@ -1,98 +1,58 @@
-# import modules from same directory
-#
-import struct
-import numpy as np
-from nastran_format import extract_data_blocks, INT4, REAL8
-
-file_to_read = "OUTPUT/test.f11"
-blocks = extract_data_blocks(file_to_read)
-
-nblocks = len(blocks)
-
-variable_names = []
-content = np.frombuffer(blocks[0], dtype=INT4)
-nvars = content[0]
-variable_names.append(blocks[1].strip().decode("utf-8"))
+import logging
+from nastran_op2.op2_reader import OP2Reader
 
 
-solution_type = None  # 101 for static analysis
-matrix_type = None  # 66 for stiffness matrix
-data_format = None  # 6 for double precision
-matrix_symmetric = None  # 2 for symmetric, else 1 for unsymmetric
-matrix_size = None  # size of the KLL matrix
-user_identifier = None  # identifier of the subDMAP created the matrix
-load_case_id = None  # load case ID
+def setup_logging():
+    """Sets up basic logging for the application."""
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    )
+    # To see debug messages, change level to logging.DEBUG
+    # logging.getLogger("nastran_op2").setLevel(logging.DEBUG)
 
-index = 1
-data_entry = 0
 
-matrix_rows_list = []
-while index < nblocks - 3:
-    # read control block
-    index += 1
-    content = np.frombuffer(blocks[index], dtype=INT4)
-    control_block = content[0]
+def main(file_to_read: str):
+    """
+    Main function to read and process the NASTRAN OP2 file.
+    """
+    print(f"Reading OP2 file: {file_to_read}")
 
-    if control_block == -1:
-        index += 1
-        content = np.frombuffer(blocks[index], dtype=INT4)
-        nsize = content[0]
+    # Use the OP2Reader class to parse the file
+    with OP2Reader(file_to_read) as reader:
+        # Parse the file to extract all matrices
+        reader.parse()
 
-        index += 1
-        data_list = np.frombuffer(blocks[index], dtype=INT4)
+        # Print a summary of all found matrices and their metadata
+        reader.print_matrix_info()
 
-        # check if data_block has nsize elements
-        if len(data_list) != nsize:
-            print(f"Data block size mismatch: expected {nsize}, got {len(data_list)}")
+        # --- Verification ---
+        # You can now find matrices by searching for any of their associated names
+        # using the get_matrix_by_name() method.
+        print("\n--- Verification ---")
 
-        solution_type = data_list[0]  # 101 for static analysis
-        solution_type = data_list[0]  # 101 for static analysis
-        matrix_type = data_list[1]  # 66 for stiffness matrix
-        data_format = data_list[3]  # 6 for double precision
-        matrix_symmetric = data_list[4]  # 2 for symmetric, else 1 for unsymmetric
-        matrix_size = data_list[5]  # size of the KLL matrix
-        user_identifier = data_list[6]  # identifier of the subDMAP created the matrix
-        load_case_id = data_list[7]  # load case ID
-    elif control_block == -2:
-        index += 1
-        content = np.frombuffer(blocks[index], dtype=INT4)
-        nsize = content[0]
+        # Search for a matrix by one of its secondary names
+        search_name = "KGGX"
+        print(f"Searching for matrix with name: '{search_name}'...")
+        kgg_matrix_obj = reader.get_matrix_by_name(search_name)
 
-        # if nsize != nvars:
-        #     print(f"Variable names block size mismatch: expected {nvars}, got {nsize}")
+        if kgg_matrix_obj:
+            print(f"Found matrix with primary name: '{kgg_matrix_obj.name}'")
+            # Access the raw numpy data via the .data attribute
+            kgg_matrix_data = kgg_matrix_obj.data
+            print(f"Successfully retrieved matrix with shape: {kgg_matrix_data.shape}")
+            print(f"Is matrix symmetric? {kgg_matrix_obj.is_symmetric}")
+            print(f"All names for this matrix: {kgg_matrix_obj.names}")
+        else:
+            print(f"\nMatrix with name '{search_name}' not found in the file.")
 
-        index += 1
-        variable_names.append(blocks[index].strip().decode("utf-8"))
 
-    elif control_block <= -3:
-        index += 1
-        content = np.frombuffer(blocks[index], dtype=INT4)
-        nsize = round(content[0] / 2)
+if __name__ == "__main__":
+    # Set up logging to see output from the library
+    setup_logging()
 
-        if nsize == 0:
-            # reset matrix
-            KGG = np.stack(matrix_rows_list)
-            matrix_rows_list = []
-            # print(KGG)
-            print(KGG.shape)
-            print(variable_names)
+    # Define the path to the OP2 file
+    # This file is a sample output from a NASTRAN run
+    file_to_read = "OUTPUT/test.f11"
 
-            # control code == 0, means end of matrix
-            continue
-
-        index += 1
-        content = np.frombuffer(blocks[index], dtype=np.float64)
-        # add content to KGG
-        matrix_rows_list.append(content)
-
-        data_entry += 1
-
-        if data_entry == 66:
-            print("Reached 66 data entries, stopping read.")
-
-# reset matrix
-KGG = np.stack(matrix_rows_list)
-matrix_rows_list = []
-# print(KGG)
-print(KGG.shape)
-print(variable_names)
+    main(file_to_read)
